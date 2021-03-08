@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :mgmt do |mgmt_config|
       mgmt_config.vm.box = "ubuntu/focal64"
       mgmt_config.vm.hostname = "mgmt"
-      worker_config.vm.network "forwarded_port", guest: 80, host: 8080
+      mgmt_config.vm.network "forwarded_port", guest: 80, host: 8085
       mgmt_config.vm.network :private_network, ip: "10.0.15.10"
       mgmt_config.vm.provider "virtualbox" do |vb|
         vb.memory = "4096"
@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       worker_config.vm.box = "ubuntu/focal64"
       worker_config.vm.hostname = "worker"
       worker_config.vm.network :private_network, ip: "10.0.15.11"
-      worker_config.vm.network "forwarded_port", guest: 80, host: 8081
+      worker_config.vm.network "forwarded_port", guest: 80, host: 8086
       worker_config.vm.provider "virtualbox" do |vb|
         vb.memory = "4096"
       end
